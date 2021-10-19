@@ -1,0 +1,46 @@
+<div class="header">
+  <h2 class="title">Recent Transactions</h2>
+</div>
+<div class="body">
+  <div class="options">
+    <button nz-button nzType="primary" [nzSize]="'large'" nzShape="round" (click)="createNew()">
+      <i nz-icon nzType="plus-square"></i>
+      Create New
+    </button>
+
+    <form nz-form [formGroup]="filterForm" id="filterForm">
+      <nz-range-picker nzSpan="8" formControlName="rangePicker" nzShowTime></nz-range-picker>
+      <input nzSpan="6" nz-input formControlName="searchString" placeholder="Enter to filter.." />
+    </form>
+  </div>
+
+  <ng-container *ngIf="transactions$ | async as transactions">
+    <nz-table #basicTable [nzData]="transactions">
+      <thead>
+        <tr>
+          <th>Transaction Id</th>
+          <th>Date</th>
+          <th>Account Number</th>
+          <th>Amount</th>
+          <th>Currency</th>
+          <th>Destination</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>{{ transaction._id }}</td>
+          <td>{{ transaction.date }}</td>
+          <td>{{ transaction.accountNumber }}</td>
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.currency }}</td>
+          <td>{{ transaction.destination }}</td>
+          <td>
+            <button nz-button nzType="primary" [nzSize]="'large'"><i nz-icon nzType="delete"
+                (click)="deleteTransaction(transaction)"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </ng-container>
+</div>

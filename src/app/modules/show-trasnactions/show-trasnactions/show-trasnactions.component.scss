@@ -1,0 +1,23 @@
+:host {
+  .body {
+    padding: 10vh 5vh 5vh 5vh;
+  }
+  .header {
+    margin: 5vh 2vh 2vh 2vh;
+    text-align: center;
+  }
+  .options {
+    display: flex;
+    padding: 0vh 5vh 5vh 5vh;
+  }
+  .ant-form {
+    display: flex;
+    margin-left: 50%;
+  }
+  .ant-picker-range {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    margin-right: 2%;
+  }
+}

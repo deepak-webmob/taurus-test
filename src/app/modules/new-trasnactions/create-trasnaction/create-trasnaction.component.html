@@ -1,0 +1,81 @@
+<div class="header">
+  <h2>New Transaction</h2>
+</div>
+<div class="body">
+  <form nz-form [formGroup]="form" id="form">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email" nzRequired>Internal Account To Debit:</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-select [nzSize]="'large'" formControlName="accountNumber">
+          <nz-option *ngFor="let accountNumber of accountList" [nzLabel]="accountNumber" [nzValue]="accountNumber">
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzRequired nzFor="email">Amount:</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-input-group [nzAddOnAfter]="addAfterTemplate">
+          <ng-template #addAfterTemplate>
+            <nz-select [nzSize]="'large'" formControlName="currency">
+              <nz-option *ngFor="let currency of currencyList" [nzLabel]="currency" [nzValue]="currency"></nz-option>
+            </nz-select>
+          </ng-template>
+          <input formControlName="amount" [nzSize]="'large'" id="'amount'" nz-input />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email" nzRequired>Fee Paid By Receiver:</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-switch formControlName="feePaidByReceiver" [nzControl]="false"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email" nzRequired>Destination:</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <nz-select [nzSize]="'large'" formControlName="destination">
+          <nz-option *ngFor="let destination of destinationList" [nzLabel]="destination" [nzValue]="destination">
+          </nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="email" nzRequired>Meta Data:</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <div formArrayName="metaDatas">
+
+          <nz-input-group [nzSize]="'large'" class="input-group"
+            *ngFor="let metaData of metaDatas?.controls; let i=index">
+            <div nz-row [nzGutter]="8" [formGroup]="metaData">
+              <div nz-col nzSpan="6">
+                <input type="text" [formControlName]="'key'" [nzSize]="'large'" nz-input placeholder="Key" />
+              </div>
+              <div nz-col nzSpan="8">
+                <input type="text" [formControlName]="'value'" [nzSize]="'large'" nz-input placeholder="Value" />
+              </div>
+              <div nz-col nzSpan="8"> <button nz-button nzType="primary" [nzSize]="'large'"><i nz-icon nzType="delete"
+                    (click)="removeMetaData(i)"></i></button></div>
+            </div>
+          </nz-input-group>
+        </div>
+        <div nz-col nzSpan="8"> <button nz-button nzType="primary" [nzSize]="'large'" (click)="addMetaData()"><i nz-icon
+              nzType="plus-square"></i></button></div>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <div nz-col [nzSpan]="6" nzFor="email"></div>
+      <nz-form-control [nzSpan]="14">
+        <nz-input-group [nzSize]="'large'">
+          <div nz-row>
+
+            <div nz-col nzSpan="8"> <button nz-button nzType="primary" [nzSize]="'large'"
+                (click)="cancel()">Cancel</button></div>
+            <div nz-col nzSpan="8"> <button nz-button nzType="primary" [nzSize]="'large'" [disabled]="!form.valid"
+                (click)="submit()">Submit</button></div>
+          </div>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

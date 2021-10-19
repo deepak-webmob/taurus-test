@@ -1,0 +1,29 @@
+:host ::ng-deep {
+  .ant-input-group {
+    width: 50%;
+  }
+  .ant-input-group-addon {
+    width: 50%;
+  }
+  .header {
+    text-align: center;
+    padding: 7vh 9vh 5vh 10vh;
+  }
+  .ant-form-item {
+    .ant-input-group {
+      .ant-select {
+        width: 100%;
+      }
+    }
+  }
+  .input-group {
+    margin-bottom: 4px;
+  }
+  .body {
+    margin: 3vh 24vh 3vh 19vh;
+    border: 1px solid grey;
+  }
+  .ant-form {
+    margin-top: 18px;
+  }
+}
